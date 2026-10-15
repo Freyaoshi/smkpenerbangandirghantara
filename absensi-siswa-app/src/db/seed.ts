@@ -23,7 +23,7 @@ const client = createClient({
 const db = drizzle(client, { schema: { ...schema, ...authSchema } });
 
 const auth = betterAuth({
-  baseURL: "http://localhost:3000",
+  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
   database: drizzleAdapter(db, { provider: "sqlite" }),
   emailAndPassword: { enabled: true, minPasswordLength: 4 },
   plugins: [username(), admin({ defaultRole: "user" })],
