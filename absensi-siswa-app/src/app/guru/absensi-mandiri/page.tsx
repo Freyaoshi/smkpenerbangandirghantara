@@ -142,16 +142,37 @@ export default function GuruAbsensiMandiriPage() {
       streamRef.current = stream;
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        videoRef.current.play();
+        videoRef.current.onloadedmetadata = () => {
+          const playPromise = videoRef.current?.play();
+          if (playPromise !== undefined) {
+            playPromise.catch((err) => {
+              if (err.name !== "AbortError") {
+                console.warn("Camera play interrupted:", err);
+              }
+            });
+          }
+        };
       }
       setCameraActive(true);
       toast.info("Kamera biometrik wajah aktif");
-    } catch {
-      toast.error("Tidak dapat mengakses kamera. Pastikan izin kamera telah diberikan.");
+    } catch (err: unknown) {
+      const error = err as Error;
+      if (error.name !== "AbortError") {
+        toast.error("Tidak dapat mengakses kamera. Pastikan izin kamera telah diberikan.");
+      }
     }
   };
 
   const stopCamera = () => {
+    if (videoRef.current) {
+      videoRef.current.onloadedmetadata = null;
+      try {
+        videoRef.current.pause();
+      } catch {
+        // ignore
+      }
+      videoRef.current.srcObject = null;
+    }
     if (streamRef.current) {
       streamRef.current.getTracks().forEach((track) => track.stop());
       streamRef.current = null;
