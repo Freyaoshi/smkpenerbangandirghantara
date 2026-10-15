@@ -4,6 +4,7 @@ import { spkScores, students, spkCriteria, academicYears, spkGradingCategories, 
 import { and, eq, inArray, sql } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { isTeacherOrAdmin } from "@/lib/permissions";
 
 // GET /api/spk/scores?kelas=..&criteriaId=..&mapel=..
 export async function GET(request: NextRequest) {
@@ -112,8 +113,8 @@ export async function GET(request: NextRequest) {
 // POST /api/spk/scores
 export async function POST(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  const appRole = (session?.user as Record<string, unknown>)?.appRole;
-  if (!session || (appRole !== "GURU" && appRole !== "ADMIN")) {
+  const appRole = (session?.user as Record<string, unknown>)?.appRole as string | undefined;
+  if (!session || !isTeacherOrAdmin(appRole)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -257,8 +258,8 @@ export async function POST(request: NextRequest) {
 // DELETE /api/spk/scores
 export async function DELETE(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  const appRole = (session?.user as Record<string, unknown>)?.appRole;
-  if (!session || (appRole !== "GURU" && appRole !== "ADMIN")) {
+  const appRole = (session?.user as Record<string, unknown>)?.appRole as string | undefined;
+  if (!session || !isTeacherOrAdmin(appRole)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 

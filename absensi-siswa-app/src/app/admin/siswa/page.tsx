@@ -95,8 +95,11 @@ export default function AdminSiswaPage() {
       ]);
       const studentsData = await studentsRes.json();
       const classesData = await classesRes.json();
-      setStudents(studentsData);
-      setClasses(classesData);
+      setStudents(Array.isArray(studentsData) ? studentsData : []);
+      setClasses(Array.isArray(classesData) ? classesData : []);
+      if (!studentsRes.ok || !classesRes.ok) {
+        toast.error((studentsData as { error?: string })?.error || "Gagal memuat data");
+      }
     } catch {
       toast.error("Gagal memuat data");
     } finally {
@@ -108,10 +111,11 @@ export default function AdminSiswaPage() {
     fetchData();
   }, [fetchData]);
 
-  const filtered = students.filter((s) => {
+  const safeStudents = Array.isArray(students) ? students : [];
+  const filtered = safeStudents.filter((s) => {
     const matchSearch =
-      s.namaLengkap.toLowerCase().includes(search.toLowerCase()) ||
-      s.nis.includes(search);
+      (s.namaLengkap || "").toLowerCase().includes(search.toLowerCase()) ||
+      (s.nis || "").includes(search);
     const matchKelas = filterKelas === "all" || s.kelas === filterKelas;
     return matchSearch && matchKelas;
   });

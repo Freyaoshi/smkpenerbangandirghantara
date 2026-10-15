@@ -18,6 +18,8 @@ export const auth = betterAuth({
     "https://absensi-siswa-git-main-brongskuys-projects.vercel.app",
     "https://absensisiswa-main-bzjg5eu66.vercel.app",
     process.env.BETTER_AUTH_URL || "",
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "",
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "",
   ].filter(Boolean),
 
   emailAndPassword: {

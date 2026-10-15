@@ -4,6 +4,7 @@ import { students, spkScores, spkCriteria, academicYears, attendance } from "@/d
 import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { isAdminOrSuperAdmin } from "@/lib/permissions";
 
 // GET /api/students/[id]/scores
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -12,8 +13,8 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const appRole = (session.user as Record<string, unknown>)?.appRole;
-  if (appRole !== "ADMIN" && appRole !== "GURU") {
+  const appRole = (session.user as Record<string, unknown>)?.appRole as string | undefined;
+  if (!isAdminOrSuperAdmin(appRole) && appRole !== "GURU") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 

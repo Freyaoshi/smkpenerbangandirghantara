@@ -5,11 +5,13 @@ import { user } from "@/db/auth-schema";
 import { eq, inArray } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { isAdminOrSuperAdmin } from "@/lib/permissions";
 
 // POST /api/system/reset — Reset (delete) all operational data
 export async function POST() {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || (session.user as Record<string, unknown>).appRole !== "ADMIN") {
+  const appRole = (session?.user as Record<string, unknown>)?.appRole as string | undefined;
+  if (!session || !isAdminOrSuperAdmin(appRole)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 

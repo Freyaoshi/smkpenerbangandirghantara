@@ -6,11 +6,13 @@ import { headers } from "next/headers";
 import * as XLSX from "xlsx";
 import { calculateSPK } from "@/lib/spk";
 import { getTodayWIB } from "@/lib/utils";
+import { isAdminOrSuperAdmin } from "@/lib/permissions";
 
 // GET /api/system/export-all — Export all operational data as a multi-sheet Excel file
 export async function GET() {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || (session.user as Record<string, unknown>).appRole !== "ADMIN") {
+  const appRole = (session?.user as Record<string, unknown>)?.appRole as string | undefined;
+  if (!session || !isAdminOrSuperAdmin(appRole)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 

@@ -73,6 +73,42 @@ function getRoleBadgeColor(role: string): string {
   }
 }
 
+function getProfilePath(role: string): string {
+  const r = (role || "").toUpperCase();
+  if (
+    r === "ADMIN" ||
+    r === "SUPER_ADMIN" ||
+    r === "KEPALA_SEKOLAH" ||
+    r === "PETUGAS_PIKET" ||
+    r === "SARPRAS" ||
+    r === "PUSTAKAWAN"
+  ) {
+    return "/admin/profil";
+  }
+  if (r === "GURU" || r === "WALI_KELAS" || r === "GURU_BK" || r === "PEMBINA_EKSKUL") {
+    return "/guru/profil";
+  }
+  return "/siswa/profil";
+}
+
+function getDashboardPath(role: string): string {
+  const r = (role || "").toUpperCase();
+  if (
+    r === "ADMIN" ||
+    r === "SUPER_ADMIN" ||
+    r === "KEPALA_SEKOLAH" ||
+    r === "PETUGAS_PIKET" ||
+    r === "SARPRAS" ||
+    r === "PUSTAKAWAN"
+  ) {
+    return "/admin";
+  }
+  if (r === "GURU" || r === "WALI_KELAS" || r === "GURU_BK" || r === "PEMBINA_EKSKUL") {
+    return "/guru";
+  }
+  return "/siswa";
+}
+
 interface TopbarProps {
   user: User;
   onMenuClick: () => void;
@@ -170,7 +206,7 @@ export function Topbar({ user, onMenuClick }: TopbarProps) {
               <p className="text-xs text-muted-foreground">{user.role}</p>
             </div>
             <DropdownMenuSeparator className="md:hidden" />
-            <DropdownMenuItem className="cursor-pointer" onClick={() => router.push(`/${user.role.toLowerCase()}/profil`)}>
+            <DropdownMenuItem className="cursor-pointer" onClick={() => router.push(getProfilePath(user.role))}>
               Profil Saya
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -188,12 +224,12 @@ export function Topbar({ user, onMenuClick }: TopbarProps) {
           <CommandList>
             <CommandEmpty>Tidak ada yang ditemukan.</CommandEmpty>
             {/* Role-based navigation items */}
-            <CommandGroup heading={`Navigasi ${user.role === "ADMIN" ? "Administrator" : user.role === "GURU" ? "Guru" : "Siswa"}`}>
-              <CommandItem onSelect={() => { setOpenSearch(false); router.push(`/${user.role.toLowerCase()}`); }}>
+            <CommandGroup heading={`Navigasi ${user.role === "ADMIN" || user.role === "SUPER_ADMIN" ? "Administrator" : user.role === "GURU" ? "Guru" : "Siswa"}`}>
+              <CommandItem onSelect={() => { setOpenSearch(false); router.push(getDashboardPath(user.role)); }}>
                 Dashboard
               </CommandItem>
               
-              {user.role === "ADMIN" && (
+              {(user.role === "ADMIN" || user.role === "SUPER_ADMIN") && (
                 <>
                   <CommandItem onSelect={() => { setOpenSearch(false); router.push("/admin/siswa"); }}>
                     Data Siswa
@@ -259,7 +295,7 @@ export function Topbar({ user, onMenuClick }: TopbarProps) {
                 </>
               )}
               
-              <CommandItem onSelect={() => { setOpenSearch(false); router.push(`/${user.role.toLowerCase()}/profil`); }}>
+              <CommandItem onSelect={() => { setOpenSearch(false); router.push(getProfilePath(user.role)); }}>
                 Profil Saya
               </CommandItem>
             </CommandGroup>

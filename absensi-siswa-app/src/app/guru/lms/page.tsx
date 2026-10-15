@@ -327,11 +327,13 @@ export default function GuruLmsPage() {
         <div className="flex gap-2">
           {/* Dialog Upload Materi */}
           <Dialog open={matDialogOpen} onOpenChange={setMatDialogOpen}>
-            <DialogTrigger asChild>
-              <Button className="bg-navy-600 hover:bg-navy-700 text-white gap-2 shadow-sm">
-                <Plus className="h-4 w-4" /> Unggah Materi
-              </Button>
-            </DialogTrigger>
+            <DialogTrigger
+              render={
+                <Button className="bg-navy-600 hover:bg-navy-700 text-white gap-2 shadow-sm">
+                  <Plus className="h-4 w-4" /> Unggah Materi
+                </Button>
+              }
+            />
             <DialogContent className="sm:max-w-[550px]">
               <form onSubmit={handleCreateMaterial}>
                 <DialogHeader>
@@ -445,11 +447,13 @@ export default function GuruLmsPage() {
 
           {/* Dialog Buat Tugas */}
           <Dialog open={assDialogOpen} onOpenChange={setAssDialogOpen}>
-            <DialogTrigger asChild>
-              <Button className="bg-amber-600 hover:bg-amber-700 text-white gap-2 shadow-sm">
-                <FileCheck className="h-4 w-4" /> Buat Tugas Baru
-              </Button>
-            </DialogTrigger>
+            <DialogTrigger
+              render={
+                <Button className="bg-amber-600 hover:bg-amber-700 text-white gap-2 shadow-sm">
+                  <FileCheck className="h-4 w-4" /> Buat Tugas Baru
+                </Button>
+              }
+            />
             <DialogContent className="sm:max-w-[550px]">
               <form onSubmit={handleCreateAssignment}>
                 <DialogHeader>

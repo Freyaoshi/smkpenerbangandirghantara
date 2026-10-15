@@ -206,6 +206,7 @@ export const schoolAnnouncements = sqliteTable("school_announcements", {
   prioritas: text("prioritas", { enum: ["Normal", "Penting", "Urgent"] }).notNull().default("Normal"),
   tanggalMulai: text("tanggal_mulai"),
   tanggalSelesai: text("tanggal_selesai"),
+  imageUrl: text("image_url"),
   isPublished: integer("is_published", { mode: "boolean" }).notNull().default(true),
   authorName: text("author_name").default("Humas Dirghantara"),
   createdAt: text("created_at").notNull().$defaultFn(() => new Date().toISOString()),

@@ -47,7 +47,10 @@ export default function AdminGuruPage() {
     try {
       const res = await fetch("/api/teachers");
       const data = await res.json();
-      setTeachers(data);
+      setTeachers(Array.isArray(data) ? data : []);
+      if (!res.ok) {
+        toast.error((data as { error?: string })?.error || "Gagal memuat data guru");
+      }
     } catch {
       toast.error("Gagal memuat data guru");
     } finally {
@@ -59,10 +62,11 @@ export default function AdminGuruPage() {
     fetchData();
   }, [fetchData]);
 
-  const filtered = teachers.filter(
+  const safeTeachers = Array.isArray(teachers) ? teachers : [];
+  const filtered = safeTeachers.filter(
     (t) =>
-      t.namaLengkap.toLowerCase().includes(search.toLowerCase()) ||
-      t.nip.includes(search)
+      (t.namaLengkap || "").toLowerCase().includes(search.toLowerCase()) ||
+      (t.nip || "").includes(search)
   );
 
   const resetForm = () => {

@@ -71,8 +71,14 @@ export default function EkskulPrestasiPage() {
         fetch("/api/students"),
       ]);
 
-      if (resEkskul.ok) setScores(await resEkskul.json());
-      if (resStudents.ok) setAllStudents(await resStudents.json());
+      if (resEkskul.ok) {
+        const eData = await resEkskul.json();
+        setScores(Array.isArray(eData) ? eData : []);
+      }
+      if (resStudents.ok) {
+        const sData = await resStudents.json();
+        setAllStudents(Array.isArray(sData) ? sData : []);
+      }
     } catch {
       toast.error("Gagal memuat data ekskul dan prestasi");
     } finally {

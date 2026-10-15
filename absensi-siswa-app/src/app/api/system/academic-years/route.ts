@@ -4,11 +4,13 @@ import { academicYears } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { isAdminOrSuperAdmin } from "@/lib/permissions";
 
 // GET /api/system/academic-years — Get all academic years
 export async function GET() {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || (session.user as Record<string, unknown>).appRole !== "ADMIN") {
+  const appRole = (session?.user as Record<string, unknown>)?.appRole as string | undefined;
+  if (!session || !isAdminOrSuperAdmin(appRole)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -31,7 +33,8 @@ export async function GET() {
 // POST /api/system/academic-years — Create new academic year
 export async function POST(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || (session.user as Record<string, unknown>).appRole !== "ADMIN") {
+  const appRole = (session?.user as Record<string, unknown>)?.appRole as string | undefined;
+  if (!session || !isAdminOrSuperAdmin(appRole)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -83,7 +86,8 @@ export async function POST(request: NextRequest) {
 // PUT /api/system/academic-years — Update/Toggle active academic year or update fields
 export async function PUT(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || (session.user as Record<string, unknown>).appRole !== "ADMIN") {
+  const appRole = (session?.user as Record<string, unknown>)?.appRole as string | undefined;
+  if (!session || !isAdminOrSuperAdmin(appRole)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -125,7 +129,8 @@ export async function PUT(request: NextRequest) {
 // DELETE /api/system/academic-years — Delete an academic year
 export async function DELETE(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || (session.user as Record<string, unknown>).appRole !== "ADMIN") {
+  const appRole = (session?.user as Record<string, unknown>)?.appRole as string | undefined;
+  if (!session || !isAdminOrSuperAdmin(appRole)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 

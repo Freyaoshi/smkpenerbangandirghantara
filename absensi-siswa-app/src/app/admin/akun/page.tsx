@@ -287,11 +287,13 @@ export default function AdminAkunPage() {
       >
         {isSuper && (
           <Dialog open={createOpen} onOpenChange={setCreateOpen}>
-            <DialogTrigger asChild>
-              <Button className="bg-navy-600 hover:bg-navy-700 text-white gap-2 shadow-sm">
-                <UserPlus className="h-4 w-4" /> Tambah Akun Pengguna
-              </Button>
-            </DialogTrigger>
+            <DialogTrigger
+              render={
+                <Button className="bg-navy-600 hover:bg-navy-700 text-white gap-2 shadow-sm">
+                  <UserPlus className="h-4 w-4" /> Tambah Akun Pengguna
+                </Button>
+              }
+            />
             <DialogContent className="sm:max-w-[500px]">
               <form onSubmit={handleCreateUser}>
                 <DialogHeader>

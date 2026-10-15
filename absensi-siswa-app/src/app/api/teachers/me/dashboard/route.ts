@@ -5,6 +5,7 @@ import { eq, inArray, and } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { getTodayWIB } from "@/lib/utils";
+import { isAdminOrSuperAdmin } from "@/lib/permissions";
 
 // GET /api/teachers/me/dashboard — get dashboard stats & classes for logged in teacher
 export async function GET() {
@@ -13,8 +14,8 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const appRole = (session.user as Record<string, unknown>)?.appRole;
-  if (appRole !== "GURU" && appRole !== "ADMIN") {
+  const appRole = (session.user as Record<string, unknown>)?.appRole as string | undefined;
+  if (appRole !== "GURU" && !isAdminOrSuperAdmin(appRole)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -121,7 +122,7 @@ export async function GET() {
           })
           .filter(c => c.subjects.length > 0);
       }
-    } else if (appRole === "ADMIN") {
+    } else if (isAdminOrSuperAdmin(appRole)) {
        const allFullClasses = await db.select().from(classes).all();
        assignedClasses = allFullClasses.map(c => ({
           id: c.id,
@@ -160,7 +161,7 @@ export async function GET() {
       let hasAttendance = false;
       if (relevantMapels.length > 0) {
          hasAttendance = allAttendanceToday.some(a => a.kelas === c.namaKelas && relevantMapels.includes(a.mapel || ""));
-      } else if (appRole === "ADMIN") {
+      } else if (isAdminOrSuperAdmin(appRole)) {
          hasAttendance = allAttendanceToday.some(a => a.kelas === c.namaKelas);
       }
 

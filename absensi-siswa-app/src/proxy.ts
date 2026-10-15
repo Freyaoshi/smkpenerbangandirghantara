@@ -65,6 +65,11 @@ export async function proxy(request: NextRequest) {
       "SUPER_ADMIN",
     ];
 
+    if (pathname.startsWith("/super-admin") || pathname.startsWith("/super_admin")) {
+      const target = pathname.replace(/^\/(super-admin|super_admin)/, "/admin") || "/admin";
+      return NextResponse.redirect(new URL(target, request.url));
+    }
+
     if (pathname.startsWith("/admin") && !adminRoles.includes(role)) {
       const redirectPath = guruRoles.includes(role) ? "/guru" : "/siswa";
       return NextResponse.redirect(new URL(redirectPath, request.url));

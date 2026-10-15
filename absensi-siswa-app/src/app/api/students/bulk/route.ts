@@ -4,11 +4,13 @@ import { students, classes } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
+import { isAdminOrSuperAdmin } from "@/lib/permissions";
 
 // POST /api/students/bulk — bulk import students from Excel data
 export async function POST(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || (session.user as Record<string, unknown>).appRole !== "ADMIN") {
+  const appRole = (session?.user as Record<string, unknown>)?.appRole as string | undefined;
+  if (!session || !isAdminOrSuperAdmin(appRole)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 

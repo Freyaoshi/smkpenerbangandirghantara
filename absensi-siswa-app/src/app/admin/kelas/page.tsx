@@ -53,8 +53,11 @@ export default function AdminKelasPage() {
       ]);
       const classData = await classRes.json();
       const teacherData = await teacherRes.json();
-      setClasses(classData);
-      setTeachers(teacherData);
+      setClasses(Array.isArray(classData) ? classData : []);
+      setTeachers(Array.isArray(teacherData) ? teacherData : []);
+      if (!classRes.ok || !teacherRes.ok) {
+        toast.error((classData as { error?: string })?.error || "Gagal memuat data");
+      }
     } catch {
       toast.error("Gagal memuat data");
     } finally {

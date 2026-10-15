@@ -79,7 +79,10 @@ export default function SarprasHanggarPage() {
         setFacilities(sData.facilities || []);
         setSchedules(sData.schedules || []);
       }
-      if (resClasses.ok) setClassesList(await resClasses.json());
+      if (resClasses.ok) {
+        const cData = await resClasses.json();
+        setClassesList(Array.isArray(cData) ? cData : []);
+      }
     } catch {
       toast.error("Gagal memuat data sarana prasarana");
     } finally {

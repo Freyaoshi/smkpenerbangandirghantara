@@ -4,6 +4,7 @@ import { students } from "@/db/schema";
 import { eq, like, or, sql } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { isAdminOrSuperAdmin } from "@/lib/permissions";
 
 // GET /api/students — list all students with optional search & filter
 export async function GET(request: NextRequest) {
@@ -12,8 +13,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const appRole = (session.user as Record<string, unknown>)?.appRole;
-  if (appRole !== "ADMIN" && appRole !== "GURU") {
+  const appRole = (session.user as Record<string, unknown>)?.appRole as string | undefined;
+  if (!isAdminOrSuperAdmin(appRole) && appRole !== "GURU") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -43,7 +44,8 @@ export async function GET(request: NextRequest) {
 // POST /api/students — create a new student
 export async function POST(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || (session.user as Record<string, unknown>).appRole !== "ADMIN") {
+  const appRole = (session?.user as Record<string, unknown>)?.appRole as string | undefined;
+  if (!session || !isAdminOrSuperAdmin(appRole)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 

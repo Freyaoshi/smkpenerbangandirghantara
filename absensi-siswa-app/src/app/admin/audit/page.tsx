@@ -64,7 +64,7 @@ export default function AuditTrailPage() {
       const res = await fetch(url);
       if (res.ok) {
         const data = await res.json();
-        setLogs(data);
+        setLogs(Array.isArray(data) ? data : []);
       } else {
         toast.error("Gagal memuat log audit");
       }
@@ -75,9 +75,10 @@ export default function AuditTrailPage() {
     }
   };
 
-  const filteredLogs = logs.filter(
+  const safeLogs = Array.isArray(logs) ? logs : [];
+  const filteredLogs = safeLogs.filter(
     (l) =>
-      l.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (l.userName || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
       l.detail.toLowerCase().includes(searchTerm.toLowerCase()) ||
       l.modul.toLowerCase().includes(searchTerm.toLowerCase()) ||
       l.action.toLowerCase().includes(searchTerm.toLowerCase())

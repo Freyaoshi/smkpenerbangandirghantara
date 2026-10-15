@@ -100,7 +100,8 @@ export default function BukuSakuDanBKPage() {
       if (isBKorSuperAdmin) {
         const resC = await fetch("/api/counseling");
         if (resC.ok) {
-          setCounselingRecords(await resC.json());
+          const cData = await resC.json();
+          setCounselingRecords(Array.isArray(cData) ? cData : []);
         }
       }
     } catch {

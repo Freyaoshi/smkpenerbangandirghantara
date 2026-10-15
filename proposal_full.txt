@@ -1,0 +1,169 @@
+Latar Belakang
+Sekolah Menengah Kejuruan (SMK) Penerbangan Dirghantara merupakan salah satu institusi pendidikan kejuruan unggulan yang berfokus pada teknologi kedirgantaraan, khususnya program keahlian Airframe and Powerplant serta Electrical Avionic. Sebagai sekolah vokasi penerbangan yang membina para taruna-taruni dengan kultur kedisiplinan tinggi, kurikulum berbasis standar industri aviasi, serta kegiatan praktikum intensif di laboratorium dan bengkel kerja pesawat, kelancaran operasional dan keteraturan tata kelola administrasi sekolah memegang peranan yang sangat fundamental dalam mendukung mutu pembelajaran dan pembentukan karakter taruna yang berkualitas.
+Seiring dengan perkembangan teknologi informasi yang semakin pesat, kebutuhan akan digitalisasi tata kelola sekolah menjadi semakin mendesak. Proses pencatatan kehadiran guru dan tenaga kependidikan yang masih dilakukan secara konvensional menyebabkan keterlambatan dalam rekapitulasi dan belum disertai instrumen validasi lokasi kehadiran yang terverifikasi. Di sisi lain, pencatatan kehadiran taruna di kelas masih bertumpu pada lembaran buku jurnal manual per rombongan belajar, sehingga proses rekapitulasi absensi bulanan maupun semester memerlukan waktu yang cukup lama dan menyulitkan wali kelas serta bagian kesiswaan dalam memantau ketidakhadiran taruna secara dini.
+Pada aspek akademik, pengolahan nilai tugas, ulangan harian, dan praktikum kejuruan masih dilakukan secara manual dan terpisah. Hal ini tidak hanya memperpanjang proses penerbitan laporan hasil belajar, tetapi juga menambah beban administratif dewan guru karena belum tersedianya fasilitas ekspor data nilai dan rekapitulasi absensi ke format yang mudah diolah untuk keperluan pelaporan berkala. Sementara itu, penentuan peringkat taruna berprestasi di akhir semester selama ini masih dilaksanakan melalui mekanisme musyawarah tanpa instrumen pembobotan multikriteria yang terstandarisasi, sehingga proses penilaian berpotensi kurang objektif dan memerlukan koordinasi yang panjang.
+Sebagai sekolah penerbangan yang menekankan pembentukan karakter dan kedisiplinan, pencatatan pelanggaran tata tertib taruna oleh Bimbingan Konseling (BK) dan kesiswaan melalui buku saku poin pelanggaran juga masih berjalan secara terpisah dan belum terintegrasi ke dalam evaluasi prestasi taruna secara otomatis. Penyampaian informasi sekolah seperti jadwal apel kedirgantaraan, surat edaran, dan jadwal penggunaan sarana praktikum bengkel pesawat yang masih mengandalkan papan mading fisik berisiko menyebabkan warga sekolah terlambat atau ketinggalan memperoleh informasi penting. Selain itu, orang tua atau wali murid belum memiliki akses langsung untuk memantau kehadiran harian taruna, sehingga informasi mengenai ketidakhadiran sering kali baru diketahui setelah akumulasi alpa menumpuk.
+Berdasarkan latar belakang dan kebutuhan tersebut, diusulkan Rancang Bangun “Sistem Informasi Manajemen Elektronik Sekolah dan Administrasi (SIMESA)” berbasis web pada SMK Penerbangan Dirghantara sebagai solusi terpadu dalam mewujudkan digitalisasi tata kelola sekolah yang terstruktur, akuntabel, dan berkesinambungan.
+Maksud
+Maksud dari pelaksanaan Project Work ini adalah merancang dan mengembangkan “Sistem Informasi Manajemen Elektronik Sekolah dan Administrasi (SIMESA)” berbasis web pada SMK Penerbangan Dirghantara sebagai platform terpadu untuk memfasilitasi digitalisasi tata kelola administrasi sekolah, pengelolaan presensi guru dengan validasi biometrik dan geolokasi, pencatatan kehadiran taruna dengan filter fleksibel, pengolahan nilai akademik dan ekspor laporan Excel, penerapan sistem pendukung keputusan penentuan taruna berprestasi metode SMART, pengelolaan catatan pelanggaran kedisiplinan terintegrasi, fasilitas mading digital, pembelajaran daring terstruktur, serta otomasi notifikasi rekapitulasi kehadiran harian kepada orang tua melalui Bot WhatsApp Gateway.
+Tujuan
+Adapun tujuan utama yang ingin dicapai dari pelaksanaan Project Work ini adalah:
+1. Modernisasi Presensi Dewan Guru Berbasis Biometrik Wajah dan Geolokasi
+Mengembangkan sistem presensi mandiri guru berbasis pengenalan wajah (Face Recognition) melalui peramban web yang divalidasi dengan radius koordinat lokasi (geolokasi GPS) sekolah guna menjamin akurasi dan kepatuhan kehadiran pendidik secara real-time.
+2. Digitalisasi Presensi Taruna dengan Rekapitulasi Otomatis dan Filter Fleksibel
+Menyediakan antarmuka pencatatan kehadiran taruna per rombongan belajar yang praktis bagi guru, dilengkapi sistem filter fleksibel berupa pilihan rekapitulasi berbasis bulanan maupun rekapitulasi kumulatif satu semester penuh, serta fitur ekspor laporan ke Excel (.xlsx) untuk mempermudah pelaporan administratif.
+3. Penerapan SPK Penentuan Taruna Berprestasi Metode SMART
+Menggantikan metode musyawarah manual dengan algoritma Simple Multi-Attribute Rating Technique (SMART) berbasis lima kriteria terbobot baku (kehadiran, nilai rapor, kedisiplinan, keaktifan ekskul, dan prestasi) untuk menghasilkan perankingan objektif dan pencetakan piagam penghargaan resmi.
+4. Pengolahan Nilai Akademik Terpadu, Penerbitan E-Rapor Digital, dan Ekspor Laporan Excel
+Membangun modul pengolahan nilai akademik yang terstruktur dan proporsional, penerbitan e-rapor berstandar resmi format PDF siap cetak, serta fitur ekspor data nilai ke Microsoft Excel (.xlsx) untuk mempermudah tugas administrasi guru.
+5. Pengelolaan Catatan Pelanggaran Kedisiplinan Taruna Terintegrasi dengan Sistem SPK
+Mengembangkan sistem pencatatan pelanggaran tata tertib taruna berbasis buku saku digital yang terhubung langsung sebagai komponen pengurang nilai pada kriteria kedisiplinan SPK SMART, serta memantau ambang batas Surat Peringatan (SP).
+6. Optimalisasi Distribusi Informasi Sekolah dan Fasilitas Praktik Aviasi
+Menyediakan mading digital terpusat untuk publikasi pengumuman sekolah, agenda apel kedirgantaraan, jadwal sarana praktikum laboratorium dan bengkel kerja pesawat (AP dan EA) agar seluruh warga sekolah tidak ketinggalan informasi resmi.
+7. Penyediaan Pembelajaran Daring (LMS) dan Evaluasi KBM dengan Output Dokumen Cetak
+Menyediakan modul distribusi materi dan tugas daring disertai opsi jadwal pembelajaran per kelas, serta kuesioner evaluasi proses belajar mengajar oleh taruna yang menghasilkan dokumen cetak resmi evaluasi mengajar guru.
+8. Otomasi Pengiriman Rekapitulasi Kehadiran Harian via Bot WhatsApp Gateway
+Mengintegrasikan Bot WhatsApp Gateway untuk mengirimkan pesan rekapitulasi kehadiran harian taruna secara komprehensif kepada orang tua setiap sore hari serta laporan harian otomatis kepada pimpinan sekolah.
+Sasaran
+Sasaran penerapan platform SIMESA pada SMK Penerbangan Dirghantara mencakup berbagai entitas pengguna di lingkungan sekolah dengan wewenang yang disesuaikan secara spesifik sesuai tugas fungsionalnya, yaitu:
+1. Administrator Utama dan Staf Tata Usaha (TU)
+Mengelola data master sekolah (data induk taruna, pendidik, mata pelajaran, rombongan belajar, dan tahun ajaran) yang mencakup atribut NIS/NISN, nama lengkap, program keahlian AP/EA, alamat domisili, email, nomor telepon/WhatsApp, serta data ekstrakurikuler taruna, manajemen akun pengguna, dan rekapitulasi data operasional sekolah secara terpusat.
+2. Kepala Sekolah (Pimpinan)
+Memiliki akses role akun khusus pimpinan untuk memantau dashboard terpusat terkait statistik kehadiran dewan guru dan taruna, hasil perankingan taruna berprestasi metode SMART, laporan evaluasi pembelajaran, serta integritas data administrasi sekolah.
+3. Petugas Piket / Penanggung Jawab Presensi Guru
+Memantau kehadiran dewan guru secara real-time pada papan kontrol harian dan memiliki wewenang verifikasi presensi alternatif dalam kondisi khusus.
+4. Dewan Guru / Guru Mata Pelajaran
+Melakukan presensi mandiri berbasis biometrik wajah dan geolokasi, menginput absensi kelas taruna harian, menginput nilai akademik, mengunduh ekspor rekap absensi dan nilai ke Excel, serta mengunggah bahan ajar dan tugas pada modul LMS.
+5. Wali Kelas
+Mengakses dashboard monitoring kelas bimbingan, meninjau rekapitulasi kehadiran dan kedisiplinan taruna per rombel, memeriksa kelengkapan pengisian nilai akademik, mengunduh e-rapor kelas bimbingan, serta mempersiapkan bahan evaluasi kenaikan kelas melalui rapat pleno dewan guru.
+6. Guru Bimbingan Konseling (BK) dan Tim Kesiswaan
+Mencatat pelanggaran tata tertib taruna berdasarkan buku saku poin pelanggaran digital, memantau akumulasi poin sanksi, memproses rekomendasi Surat Peringatan (SP), mendokumentasikan riwayat konseling, serta mengintegrasikan data kedisiplinan ke sistem SPK SMART.
+7. Pembina Ekstrakurikuler dan Prestasi
+Mengelola data keanggotaan taruna pada organisasi kedirgantaraan/ekskul, mencatat keaktifan ekskul, serta menginput capaian prestasi dan perlombaan taruna yang menjadi variabel penilaian kriteria C4 dan C5 pada modul SPK SMART.
+8. Pengelola Perpustakaan (Pustakawan)
+Mengelola katalog buku pelajaran kejuruan kedirgantaraan dan modul referensi, mencatat sirkulasi peminjaman dan pengembalian buku, serta memantau ketersediaan koleksi pustaka.
+9. Pengelola Sarana dan Prasarana (Sarpras Praktik Aviasi)
+Menyampaikan informasi fasilitas sarana laboratorium komputer, hanggar pesawat, serta bengkel kerja praktik Airframe & Powerplant dan Electrical Avionic, termasuk jadwal pemakaian dan SOP keselamatan kerja.
+10. Siswa / Taruna-Taruni
+Mengakses materi dan tugas pembelajaran daring, melihat pengumuman mading digital, memantau riwayat kehadiran dan nilai e-rapor, serta mengisi kuesioner evaluasi proses belajar mengajar guru di akhir semester.
+11. Orang Tua / Wali Taruna
+Memantau kehadiran putra-putrinya melalui portal web mandiri serta menerima pemberitahuan rekapitulasi kehadiran harian via Bot WhatsApp setiap sore hari.
+Fitur Aplikasi
+Sistem Informasi Manajemen Elektronik Sekolah dan Administrasi (SIMESA) dirancang berbasis arsitektur web yang modular, aman, dan terintegrasi penuh. Berdasarkan hasil analisis kebutuhan bersama pihak mitra SMK Penerbangan Dirghantara, sistem ini mencakup 16 modul fungsional utama yang dirinci sebagai berikut:
+a. Modul Autentikasi, Keamanan, dan Manajemen Hak Akses (RBAC)
+1) Sistem keamanan autentikasi login berbasis sesi terenkripsi dengan proteksi hashing kata sandi menggunakan algoritma bcrypt.
+2) Manajemen hak akses pengguna terperinci (Role-Based Access Control) untuk 11 peran fungsional (Administrator TU, Kepala Sekolah, Petugas Piket, Dewan Guru, Wali Kelas, Guru BK/Kesiswaan, Pembina Ekskul, Pustakawan, Pengelola Sarpras, Taruna, dan Orang Tua).
+3) Pengelolaan Master Data Sekolah secara terstruktur yang mencakup data taruna (NIS/NISN, nama lengkap, kelas/rombel, program keahlian AP/EA, alamat domisili, email, nomor telepon/WhatsApp, ekstrakurikuler) dan data pendidik/tenaga kependidikan (NIP/NUPTK, nama, mata pelajaran, kontak).
+4) Fasilitas pembaruan profil mandiri dan pembatasan otorisasi akses halaman sesuai peran pengguna.
+b. Modul Presensi Taruna Terpadu dan Ekspor Laporan Excel
+1) Tampilan antarmuka tabel presensi per rombongan belajar yang memudahkan guru mengisi kehadiran seluruh taruna dalam satu layar interaktif.
+2) Pengisian status kehadiran taruna (Hadir, Izin, Sakit, Alfa) dilengkapi opsi pengisian massal untuk mempercepat proses pencatatan.
+3) Sistem rekapitulasi absensi otomatis dengan opsi filter fleksibel: pengguna dapat memilih rekapitulasi berbasis bulanan maupun kumulatif satu semester penuh.
+4) Fitur ekspor laporan rekap absensi ke format Microsoft Excel (.xlsx) siap cetak dan arsip.
+c. Modul Presensi Dewan Guru Berbasis Pengenalan Wajah dan Validasi Geolokasi
+1) Fitur presensi mandiri guru berbasis kamera web (WebRTC API) menggunakan pustaka face-api.js untuk pengenalan biometrik wajah secara real-time.
+2) Integrasi validasi lokasi (geolokasi GPS) dengan penentuan radius koordinat resmi SMK Penerbangan Dirghantara, memastikan presensi hanya dapat dilakukan apabila guru berada di dalam lingkungan sekolah.
+3) Pencatatan waktu kehadiran secara presisi disertai indikator otomatis tepat waktu atau terlambat.
+d. Modul Pengolahan Nilai Akademik, E-Rapor Digital, dan Ekspor Excel
+1) Pengelolaan bobot dan formula nilai proporsional untuk komponen tugas, ulangan harian, dan praktikum bengkel aviasi per mata pelajaran umum maupun kejuruan (AP dan EA).
+2) Fasilitas ekspor data rekapitulasi nilai akademik ke format Microsoft Excel (.xlsx) per kelas untuk mempermudah pelaporan administratif.
+3) Penerbitan e-rapor digital berformat PDF standar resmi lengkap dengan Kop Surat resmi SMK Penerbangan Dirghantara yang siap diunduh dan dicetak.
+4) Penyajian rekap capaian akademik sebagai bahan pertimbangan rapat pleno dewan guru dalam penentuan kenaikan kelas.
+e. Modul SPK Penentuan Taruna Berprestasi Metode SMART
+1) Penerapan algoritma Simple Multi-Attribute Rating Technique (SMART) untuk menggantikan metode musyawarah manual konvensional, menghasilkan perankingan yang objektif, adil, dan transparan.
+2) Mengadopsi bobot baku 5 kriteria acuan sekolah:
+   • C1: Kehadiran / Presensi (Bobot 30%) — dihitung dari persentase rekapitulasi kehadiran taruna.
+   • C2: Nilai Rapor / Akademik (Bobot 25%) — rata-rata nilai akademik rapor semester.
+   • C3: Kedisiplinan / Poin BK (Bobot 20%) — terhubung langsung dengan Modul Buku Saku Kedisiplinan BK.
+   • C4: Keaktifan Ekstrakurikuler (Bobot 15%) — dinilai dari catatan keaktifan organisasi/ekskul.
+   • C5: Prestasi dan Perlombaan (Bobot 10%) — pencapaian kompetisi akademik maupun non-akademik.
+3) Penyajian peringkat taruna berprestasi per rombel maupun umum sekolah secara otomatis.
+4) Fasilitas pencetakan dokumen Piagam Penghargaan Taruna Berprestasi resmi format PDF.
+f. Modul Pencatatan Pelanggaran Kedisiplinan Taruna (Buku Saku Digital)
+1) Pencatatan pelanggaran tata tertib taruna berbasis buku saku digital dengan sistem poin akumulasi yang disesuaikan dengan pedoman kedisiplinan sekolah.
+2) Integrasi langsung ke Modul SPK SMART: setiap poin pelanggaran yang tercatat otomatis mengurangi skor kriteria kedisiplinan (C3).
+3) Klasifikasi kategori pelanggaran (Ringan, Sedang, Berat) beserta tindakan pembinaan dan pemantauan ambang batas poin untuk penerbitan Surat Peringatan (SP 1, SP 2, SP 3).
+g. Modul Mading dan Pengumuman Sekolah Digital
+1) Publikasi informasi agenda sekolah, jadwal apel kedirgantaraan, surat edaran resmi, dan kalender akademik agar seluruh warga sekolah tidak ketinggalan informasi penting.
+2) Penyampaian informasi prestasi taruna-taruni kepada seluruh warga sekolah.
+h. Modul Perpustakaan Digital Sekolah
+1) Katalogisasi koleksi buku pelajaran kejuruan kedirgantaraan, modul umum, dan referensi aviasi.
+2) Pencatatan transaksi peminjaman dan pengembalian buku serta pemantauan ketersediaan pustaka (fokus pada pengelolaan inventaris koleksi, tanpa sistem bebas pustaka kelulusan dan tanpa sistem pembayaran denda).
+i. Modul Informasi Sarana dan Fasilitas Laboratorium/Bengkel Praktik
+1) Penyampaian informasi profil laboratorium komputer, hanggar pesawat, serta bengkel kerja praktik Airframe & Powerplant dan Electrical Avionic.
+2) Penyediaan jadwal pemakaian sarana praktikum dan sosialisasi SOP keselamatan kerja serta tata tertib penggunaan bengkel kerja penerbangan.
+j. Modul Pembelajaran Daring (Learning Management System / LMS)
+1) Media distribusi materi pembelajaran digital (modul PDF, bahan tayang, dan tautan referensi) serta pengelolaan pengumpulan tugas taruna secara terstruktur disertai tenggat waktu.
+2) Penyediaan fasilitas pengaturan dan tampilan jadwal pembelajaran per kelas sebagai fitur pendukung opsional untuk mempermudah koordinasi kegiatan belajar mengajar.
+k. Modul Kuesioner Evaluasi Pembelajaran Guru
+1) Instrumen kuesioner evaluasi proses belajar mengajar yang diisi oleh taruna pada setiap akhir semester.
+2) Rekapitulasi umpan balik taruna yang disajikan dalam bentuk laporan analitik sistem dan dapat diekspor menjadi dokumen cetak resmi evaluasi kinerja mengajar.
+l. Modul Bimbingan Konseling dan Layanan Kesiswaan
+1) Pencatatan rekam jejak bimbingan konseling dan perkembangan kepribadian taruna oleh guru BK.
+2) Dokumentasi tindak lanjut penanganan masalah kesiswaan secara terstruktur dan terjamin kerahasiaannya.
+m. Modul Pemantauan Kehadiran bagi Orang Tua / Wali Taruna
+1) Portal akses web mandiri bagi orang tua untuk melihat rekam jejak kehadiran harian putra-putrinya secara transparan.
+2) Keterbukaan data kehadiran guna membangun sinergi dan komunikasi yang efektif antara pihak sekolah dengan keluarga taruna.
+n. Modul Notifikasi Kehadiran Otomatis via Bot WhatsApp Gateway
+1) Pengiriman pesan notifikasi otomatis rekapitulasi kehadiran harian taruna secara komprehensif (mencakup status Hadir, Izin, Sakit, maupun Alfa) kepada nomor WhatsApp orang tua setiap sore hari.
+2) Pengiriman ringkasan statistik kehadiran harian sekolah kepada Kepala Sekolah dan para Wali Kelas.
+o. Modul Riwayat Aktivitas Perubahan Data (Audit Trail)
+1) Pencatatan log aktivitas pembaruan data krusial (termasuk riwayat pengeditan nilai akademik dan perubahan status kehadiran taruna) guna menjaga integritas dan akuntabilitas data.
+2) Perekaman identitas akun pengubah, waktu perubahan, dan rincian modifikasi data secara transparan.
+p. Modul Dashboard Eksekutif Kepala Sekolah dan Monitoring Kelas
+1) Dashboard khusus Kepala Sekolah untuk memantau ringkasan statistik kehadiran pendidik dan taruna, perankingan taruna berprestasi metode SMART, laporan evaluasi pembelajaran, dan kesehatan data administrasi sekolah.
+2) Dashboard khusus Wali Kelas untuk memantau rekap absensi, rekam poin kedisiplinan, dan kelengkapan capaian nilai akademik pada rombongan belajar bimbingannya.
+Tahapan Pengembangan
+Pelaksanaan Project Work pengembangan SIMESA pada SMK Penerbangan Dirghantara direncanakan berlangsung selama 4 bulan (16 minggu kalender kerja), terhitung mulai awal bulan September sampai dengan akhir bulan Desember. Alur pengembangan disusun secara terstruktur, terukur, dan realistis ke dalam sembilan tahapan kerja yang saling berkesinambungan:
+1. Analisis Kebutuhan dan Pengumpulan Data Master (Bulan I: Minggu 1 – 2)
+Melakukan inventarisasi kebutuhan fungsional bersama pihak sekolah, mengumpulkan format dokumen administrasi eksisting, mengidentifikasi atribut data master (NIS, NIP, rombel, program keahlian AP/EA, mata pelajaran, dan ekskul), serta menyusun dokumen spesifikasi kebutuhan perangkat lunak.
+2. Perancangan Arsitektur, Basis Data, dan UI/UX (Bulan I: Minggu 3 – 4)
+Merancang arsitektur sistem berbasis web, mendesain skema basis data relasional, merumuskan formula SMART dan validasi geolokasi, serta menyusun purwarupa desain antarmuka pengguna yang responsif dan mudah digunakan.
+3. Pengembangan Modul Inti dan Manajemen Hak Akses (Bulan II: Minggu 5 – 6)
+Melaksanakan penulisan kode program untuk fondasi sistem, meliputi autentikasi sesi terenkripsi bcrypt, konfigurasi hak akses 11 peran fungsional (RBAC), manajemen data master sekolah, dan modul mading digital sekolah.
+4. Pengembangan Modul Akademik, Ekspor Excel, dan SPK SMART (Bulan II: Minggu 7 – 8)
+Mengembangkan modul presensi taruna dengan filter bulanan/semester, modul pengolahan nilai dan e-rapor PDF, fitur ekspor rekap absensi dan nilai ke Excel (.xlsx), buku saku pelanggaran taruna, serta integrasi algoritma SPK penentuan taruna berprestasi metode SMART.
+5. Integrasi Biometrik Wajah, Geolokasi, dan Bot WhatsApp Gateway (Bulan III: Minggu 9 – 10)
+Mengintegrasikan fitur presensi mandiri guru berbasis pengenalan wajah (WebRTC API dan face-api.js) disertai validasi geolokasi radius koordinat sekolah, serta mengonfigurasi layanan Bot WhatsApp Gateway untuk notifikasi rekapitulasi kehadiran harian kepada orang tua dan pimpinan sekolah.
+6. Pengujian Sistem (Testing) dan Validasi (Bulan III: Minggu 11)
+Melaksanakan pengujian fungsionalitas menyeluruh menggunakan metode Black-Box Testing, validasi akurasi perhitungan matematis metode SMART, pengujian akurasi geolokasi dan biometrik wajah, serta perbaikan kesalahan program (bug fixing).
+7. Implementasi dan Deployment pada Server Produksi (Bulan III: Minggu 12)
+Melaksanakan instalasi, migrasi data master awal, dan konfigurasi sistem pada server produksi sekolah, pengaturan domain resmi SIMESA, serta konfigurasi sertifikat keamanan SSL/HTTPS.
+8. Evaluasi Sistem dan Penyusunan Buku Panduan Pengguna (Bulan IV: Minggu 13 – 14)
+Melakukan evaluasi performa sistem di lingkungan server produksi sekolah dan menyusun Buku Panduan Pengguna (Manual Book) yang sistematis dan praktis bagi masing-masing kelompok pengguna.
+9. Pelatihan Pengguna, UAT, dan Serah Terima Sistem (Bulan IV: Minggu 15 – 16)
+Menyelenggarakan pelatihan langsung bagi dewan guru dan staf kependidikan, pelaksanaan User Acceptance Testing (UAT) bersama pihak sekolah, serah terima sistem secara resmi kepada pimpinan SMK Penerbangan Dirghantara, serta penyusunan laporan akhir Project Work.
+Distribusi alokasi waktu dan matriks jadwal pelaksanaan Project Work SIMESA selama 4 bulan (16 minggu kerja) disajikan secara rinci pada tabel matriks jadwal berikut:
+Tabel 1. Matriks Jadwal / Timeline Penyelesaian Project Work
+Kegiatan
+September
+Oktober
+November
+Desember
+Kegiatan
+I
+II
+III
+IV
+I
+II
+III
+IV
+I
+II
+III
+IV
+I
+II
+III
+IV
+Analisis Kebutuhan dan pengumpulan data master
+Perancangan dan pengembangan
+Pengujian
+Implementasi dan deployment
+Evaluasi
+Penyusunan manual book
+Pelatihan bagi pengguna sistem
+Serah terima
+Pelaporan
+Dengan tersusunnya seluruh tahapan kegiatan di atas secara terencana, realistis, dan terukur sesuai Kerangka Acuan Kerja (KAK) mitra, pengembangan sistem SIMESA diharapkan dapat diselesaikan secara tepat waktu serta memberikan kontribusi nyata bagi peningkatan mutu tata kelola administrasi dan pendidikan di SMK Penerbangan Dirghantara.

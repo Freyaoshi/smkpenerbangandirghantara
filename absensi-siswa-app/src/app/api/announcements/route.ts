@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { judul, kategori, konten, prioritas, tanggalMulai, tanggalSelesai } = body;
+    const { judul, kategori, konten, prioritas, tanggalMulai, tanggalSelesai, imageUrl } = body;
 
     if (!judul || !konten || !kategori) {
       return NextResponse.json({ error: "Judul, kategori, dan konten wajib diisi" }, { status: 400 });
@@ -49,6 +49,7 @@ export async function POST(request: NextRequest) {
         prioritas: prioritas || "Normal",
         tanggalMulai: tanggalMulai || new Date().toISOString().split("T")[0],
         tanggalSelesai: tanggalSelesai || null,
+        imageUrl: imageUrl || null,
         isPublished: true,
         authorName: session.user.name || "Humas Dirghantara",
         createdAt: new Date().toISOString(),

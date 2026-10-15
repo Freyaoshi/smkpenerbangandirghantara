@@ -88,7 +88,10 @@ export default function PerpustakaanPage() {
         setBooks(lData.books || []);
         setLoans(lData.loans || []);
       }
-      if (resStudents.ok) setAllStudents(await resStudents.json());
+      if (resStudents.ok) {
+        const sData = await resStudents.json();
+        setAllStudents(Array.isArray(sData) ? sData : []);
+      }
     } catch {
       toast.error("Gagal memuat data perpustakaan");
     } finally {

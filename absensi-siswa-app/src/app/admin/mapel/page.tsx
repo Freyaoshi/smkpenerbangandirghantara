@@ -66,9 +66,12 @@ export default function AdminMapelPage() {
       const subjectData = await subjectRes.json();
       const teacherData = await teacherRes.json();
       const classData = await classRes.json();
-      setSubjects(subjectData);
-      setTeachers(teacherData);
-      setClassesList(classData);
+      setSubjects(Array.isArray(subjectData) ? subjectData : []);
+      setTeachers(Array.isArray(teacherData) ? teacherData : []);
+      setClassesList(Array.isArray(classData) ? classData : []);
+      if (!subjectRes.ok || !teacherRes.ok || !classRes.ok) {
+        toast.error((subjectData as { error?: string })?.error || "Gagal memuat data");
+      }
     } catch {
       toast.error("Gagal memuat data");
     } finally {
@@ -80,9 +83,10 @@ export default function AdminMapelPage() {
     fetchData();
   }, [fetchData]);
 
-  const filtered = subjects.filter(
+  const safeSubjects = Array.isArray(subjects) ? subjects : [];
+  const filtered = safeSubjects.filter(
     (m) =>
-      m.namaMapel.toLowerCase().includes(search.toLowerCase()) ||
+      (m.namaMapel || "").toLowerCase().includes(search.toLowerCase()) ||
       (m.guruPengampu || "").toLowerCase().includes(search.toLowerCase()) ||
       (m.kelasDiampu || "").toLowerCase().includes(search.toLowerCase())
   );
